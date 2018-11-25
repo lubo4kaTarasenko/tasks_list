@@ -1,0 +1,17 @@
+
+<%= form_for @user, url: session_path, remote: true, method: :post do |f| %>
+  <div class="login_cont">
+  *
+    <%= f.text_field :name, placeholder: "name" %>
+    <%= @user.errors[:name].first %>
+  </div>
+  <div class="login_cont">
+  *
+    <%= f.password_field :password, placeholder: "password"%>
+    <%= @user.errors[:password].first %>
+  </div>
+    <div class="login_cont">
+    <%= f.email_field :email, placeholder: "email"%>
+  </div>
+  <div><%= f.submit 'Sign Up', class: 'btn btn-primary login_cont' %></div>
+<% end %>

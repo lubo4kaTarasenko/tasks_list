@@ -1,0 +1,65 @@
+#main{
+    display: block;
+
+    background: black;
+    padding: 10px;
+}
+body{
+    text-align: center;
+    background-image: url("4.jpg");
+}
+#game{
+   border:1px solid lime;
+   padding: 2px;
+   width: auto;
+   height: auto;
+}
+table {
+    width: 100%;
+}
+
+td{
+   /*border: 1px solid lightgreen;*/
+
+    height: 15px;
+    width: 15px;
+}
+.body{
+    height: 12px;
+    width: 12px;
+    background: lime;
+    border-radius: 50%;
+
+}
+#head{
+    background: yellow;
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+}
+button{
+    background: lime;
+    margin: 10px;
+    padding: 10px;
+    width: 70px;
+}
+h2{
+    color: red;
+}
+#meal{
+    background: white;
+    height: 13px;
+    width: 13px;
+    border-radius: 50%;
+}
+h3{
+    color: yellow;
+}
+h1{
+    background: black;
+    color: lime;
+}
+#copy{
+  color: white;
+  margin-top: 10px;
+}

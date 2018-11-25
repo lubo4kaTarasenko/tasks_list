@@ -1,0 +1,38 @@
+ <!--<li class="task-item alert <%= task.status.to_i.zero? ? 'alert-secondary' : 'alert-success'%>" role="alert">
+  
+  <p class="task-title" title="<%= task.description %>"><%= task.title %></p>
+  <div class="buttons-container">
+    <%= button_tag 'X', 'data-url' => task_path(task), 'data-remote' => true, 'data-method' => :delete, class: "btn #{task.status.to_i.zero? ? 'btn-dark' : 'btn-success'}"%>
+    <%= form_for task, remote: true do |f| %>
+      <%= f.check_box :status, checked: task.done?, onchange: "this.setAttribute('data-params', 'task[status]=' + (this.checked ? 'done' : 'todo'))", data: {url: task_path(task), remote: true, method: :patch} %>
+    <% end %>
+    -->
+
+  <%= form_for task, remote: true do |f| %>
+    <div class="form-row">
+      <div class="form-group col-md-5 "> 
+          <%= f.text_field :title, class: "task_text form-control new_task", 
+           placeholder: task.title , autocomplete: "off", required: true %>
+      </div>
+      
+      <div class="form-group col-md-3"> 
+        <%= f.date_field :expire_at, id:"date", min: Date.today.strftime("%F "), required: true%>
+      </div>
+      <div class="form-group col-md-1"> 
+        <%= link_to '&cross;'.html_safe, task, id:"delete", method: :delete, :remote => true %>
+      </div> 
+      <div class="form-group col-md-1"> 
+        <%= f.check_box :done, class:"task_checkbox"  %>
+      </div>
+      <div class="form-group col-md-2">
+        <%= f.submit "Save", class: "btn btn-success btn-sm" %>
+      </div>
+    <div class="form-group col-md-12 h0"> 
+      <%= f.text_area :description, minlength:5%> 
+    </div>       
+    
+  </div>
+ <% end %>
+
+
+

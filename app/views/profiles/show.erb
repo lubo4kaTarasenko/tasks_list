@@ -1,0 +1,21 @@
+<div>
+  <h3> Your profile </h3>
+  <p> Name <%= current_user.name%></p>
+  <p> Email <%= current_user.email%></p>
+  <section class="profile-container">
+        <%= form_tag share_path, method: :post do |f| %>
+          <div class="profile_f">
+            <%= text_field_tag :friend, params[:friend], class: 'search' %>
+            <%= submit_tag "Add", class: "btn btn-outline-success btn-sm", id: "profile_add_btn" %>
+          </div>
+        <% end %>     
+  </section> 
+   <p>Shared to</p>
+   <% @friends_i_share.each do |friend|%>
+    <li><%= friend.name %></li>
+   <%end%>
+   <p>Shared to me</p>
+  <% @friends_share_me.each do |friend|%>
+    <li><a href="<%=friend_tasks_path(friend_id: friend.id)%>"><%= friend.name %></a></li>
+  <%end%>
+</div>

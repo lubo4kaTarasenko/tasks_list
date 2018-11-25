@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-sm-2">
+    <section class="creat-task-section">
+      <%= render 'form' %>
+    </section>
+  </div>
+
+  <div class="col-sm-10">
+    <section class="tasks-container">
+        <%= form_tag tasks_path, method: :get, remote: true do |f| %>
+          <div class="search_fm">
+            <%= text_field_tag :q, params[:q], class: 'search' %>
+            <%= select_tag :s, options_for_select([ "all statuses", "todo", "done"], params[:s] || "all statuses"), class: "search_sel"%>
+            <%= select_tag :f, options_for_select([ "all dates", "expired", "not expired"], params[:f] || "all dates"), class: "search_sel"%>
+            <%= date_field_tag :d, params[:d], id:"date_search"%>
+            <%= select_tag :sorting, options_for_select([ "sorting none", "expire at asc", "expire at desc", "title asc", "title desc"],
+                 params[:sorting] || "sorting none"), class: "search_sel"%>
+            <%= submit_tag "Search", class: "btn btn-outline-success btn-sm", id: "search_btn" %>
+          </div>
+      <% end %>
+    </section>
+  </div>
+</div>
+<div id="task">
+  <h2>Tasks</h2>
+    <%= render partial: 'task', collection: @tasks %>
+</div>
+<div id="pages">
+  <%= will_paginate @tasks %>
+</div>
+
+
+
