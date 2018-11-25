@@ -1,4 +1,5 @@
 function bindTaskElem(){
+  console.log("bind all")
   $(".task_text").click(function(){
     t = $(this)
     $textArea = t.parents("form").find(".h0")
@@ -17,6 +18,14 @@ function bindTaskElem(){
     checkbox = $(this)
     $textField = checkbox.parents("form").find(".new_task")
     $textField.toggleClass("done_task") 
+  })
+
+  $('body').on('click', 'a', function(){
+    console.log('link click');
+    setTimeout(function(){
+      bindTaskElem();
+    },
+    1500);
   })
 }
 
