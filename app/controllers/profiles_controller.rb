@@ -33,4 +33,10 @@ class ProfilesController < ApplicationController
      us.nil?
   end
 
+  def save_image
+    current_user.image = params[:user][:image]
+    current_user.save
+
+    redirect_to profile_path
+  end
 end

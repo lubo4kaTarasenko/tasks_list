@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   resources :tasks
   resource :profile
   post 'profile/share', to: 'profiles#share', as: :share
+  patch 'profile/save_image', to: 'profiles#save_image', as: :save_image
   get '/friends/:friend_id/tasks', to: 'shared_tasks#index', as: :friend_tasks
 end

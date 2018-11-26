@@ -1,5 +1,13 @@
 <div class="container">
   <h3> My profile </h3>
+  <%= form_for current_user, url: save_image_path, method: :patch do |f| %>
+    <div class="profile_foto">
+      <%= f.label :image %>
+      <%= f.file_field :image, value: current_user.image %>
+      <%= f.button :Save %>
+  <% end %>
+  <%= image_tag(current_user.image.url, alt: 'Image') if current_user.image? %>
+    </div>
   <div class="row">
     <div class="col-sm-2">
       <h5> Name</h5>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_24_102748) do
+ActiveRecord::Schema.define(version: 2018_11_26_152919) do
 
   create_table "owner_to_friends", force: :cascade do |t|
     t.integer "owner_id"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2018_11_24_102748) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email"
+    t.string "image"
   end
 
 end

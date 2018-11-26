@@ -11,4 +11,7 @@ class User < ApplicationRecord
 
   has_many :owners, through: :owner_friends
   has_many :friends, through: :owner_users
+
+  	
+  mount_uploader :image, ImageUploader
 end
