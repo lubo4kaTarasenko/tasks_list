@@ -1,21 +1,34 @@
-<div>
-  <h3> Your profile </h3>
-  <p> Name <%= current_user.name%></p>
-  <p> Email <%= current_user.email%></p>
+<div class="container">
+  <h3> My profile </h3>
+  <div class="row">
+    <div class="col-sm-2">
+      <h5> Name</h5>
+      <h5> Email</h5>
+    </div>
+    <div class="col-sm-4">
+      <p> <%= current_user.name%> </p>
+      <p><%= current_user.email%></p>
+    </div>
+  </div>
   <section class="profile-container">
         <%= form_tag share_path, method: :post do |f| %>
           <div class="profile_f">
-            <%= text_field_tag :friend, params[:friend], class: 'search' %>
-            <%= submit_tag "Add", class: "btn btn-outline-success btn-sm", id: "profile_add_btn" %>
+            <%= text_field_tag :friend, params[:friend], class: 'search', placeholder: "Enter user name" %>
+            <%= submit_tag "Share", class: "btn btn-outline-success btn-sm", id: "profile_add_btn" %>
           </div>
         <% end %>     
   </section> 
-   <p>Shared to</p>
+   <ul>Shared to:
    <% @friends_i_share.each do |friend|%>
-    <li><%= friend.name %></li>
+    <li>
+      <%= friend.name %>
+      <%= link_to '&cross;'.html_safe, profile_path(friend_id: friend.id), method: :delete, :remote => true %> 
+    </li>
    <%end%>
-   <p>Shared to me</p>
+   </ul>
+   <ul>Shared to me:
   <% @friends_share_me.each do |friend|%>
     <li><a href="<%=friend_tasks_path(friend_id: friend.id)%>"><%= friend.name %></a></li>
   <%end%>
+  </ul>
 </div>

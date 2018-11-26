@@ -13,8 +13,24 @@ class ProfilesController < ApplicationController
 
   def share
     @friend = User.find_by(name: params[:friend])
-    OwnerToFriend.create(friend_id: @friend.id, owner_id: current_user.id)
+    if @friend.nil?
+     redirect_to profile_path 
+    else
+      if allowed_sharing?
+        OwnerToFriend.create(friend_id: @friend.id, owner_id: current_user.id)    
+      end
     redirect_to profile_path
+    end
+  end
+
+  def destroy
+    OwnerToFriend.where(friend_id: params[:friend_id]).delete_all
+    redirect_to profile_path
+  end
+
+  def allowed_sharing?
+     us = OwnerToFriend.find_by(owner_id: current_user.id, friend_id: @friend.id)
+     us.nil?
   end
 
 end

@@ -15,25 +15,21 @@ function bindTaskElem(){
   })
 
   $(":checkbox:checked").each(function(){
-    checkbox = $(this)
-    $textField = checkbox.parents("form").find(".new_task")
-    $textField.toggleClass("done_task") 
-  })
-
-  $('body').on('click', 'a', function(){
-    console.log('link click');
-    setTimeout(function(){
-      bindTaskElem();
-    },
-    1500);
+    $checkbox = $(this)
+    $textField = $checkbox.parents("form").find(".new_task")
+    $textField.toggleClass("done_task", $checkbox[0].checked) 
   })
 }
 
-$(function(){
+var ready = function(){
   bindTaskElem();
   $('#show_snake').click(function(){
     $('#snake_container').toggleClass('hidden'); 
     $('iframe').attr('src', '/snake/snake.html'); 
     $('iframe').focus();
   })
-});
+};
+
+// $(ready);
+$(document).on('turbolinks:load', ready);
+
